@@ -46,6 +46,91 @@ top_100_kudos['relationships'] = top_100_kudos.relationships.apply(eval)
 top_100_kudos['characters'] = top_100_kudos.characters.apply(eval)
 
 # The following shows that our lists are in fact now lists.
-for i, l in enumerate(top_100_kudos['freeforms']):
-    print("list",i,"is",type(l))
+# for i, l in enumerate(top_100_kudos['characters']):
+#     print("list",i,"is",type(l))
+
+#Create a list of unique items for every column
+#Fandoms
+unique_fandoms = []
+for row in top_100_kudos['fandoms']:
+    for item in row:
+        if item in unique_fandoms:
+            None
+        else:
+            unique_fandoms.append(item)
+
+#Freeforms
+unique_freeforms = []
+for row in top_100_kudos['freeforms']:
+    for item in row:
+        if item in unique_freeforms:
+            None
+        else:
+            unique_freeforms.append(item)
+
+#Warnings
+unique_warnings = []
+for row in top_100_kudos['warnings']:
+    for item in row:
+        if item in unique_warnings:
+            None
+        else:
+            unique_warnings.append(item)
+
+#Slash Categories
+unique_slash_categories = []
+for row in top_100_kudos['slash_categories']:
+    for item in row:
+        if item in unique_slash_categories:
+            None
+        else:
+            unique_slash_categories.append(item)
+
+#Relationships
+unique_relationships = []
+for row in top_100_kudos['relationships']:
+    for item in row:
+        if item in unique_relationships:
+            None
+        else:
+            unique_relationships.append(item)
+
+#Characters
+unique_characters = []
+for row in top_100_kudos['characters']:
+    for item in row:
+        if item in unique_characters:
+            None
+        else:
+            unique_characters.append(item)
+
+
+# Function to create a boolean dataframe for each listed column
+def boolean_df(col_name, unique_items):
+# Create empty dict to hold all the data
+    bool_dict = {} 
+    for item in unique_items:
+        # Create an empty dict to hold the data unique to that item
+        item_dict = {}
+        #Iterating through 100 rows of data
+        for i in range(0,100):
+            work_id = top_100_kudos['work_id'].iloc[i]
+            if item in top_100_kudos[col_name].iloc[i]:
+                # True if that item is in the list for that work
+                item_dict[work_id] = True
+            else:
+                item_dict[work_id] = False
+        # Add boolean dictionary for specific item to larger dict
+        bool_dict[item] = item_dict
+    return pd.DataFrame(bool_dict)
+
+# Create a separate dataframe for each listed column
+fandoms_bool = boolean_df('fandoms', unique_fandoms)
+freeforms_bool = boolean_df('freeforms', unique_freeforms)
+warnings_bool = boolean_df('warnings', unique_warnings)
+slash_categories_bool = boolean_df('slash_categories', unique_slash_categories)
+relationships_bool = boolean_df('relationships', unique_relationships)
+characters_bool = boolean_df('characters', unique_characters)
+
+
 
