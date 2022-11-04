@@ -21,7 +21,7 @@ safari_service = Service('/usr/bin/safaridriver')
 
 # If headless if True, you don't see the window pop up
 safari_options = Options()
-safari_options.headless = False
+safari_options.headless = True
 
 #initializing driver with the above options
 driver = webdriver.Safari(service=safari_service, options=safari_options)
@@ -179,26 +179,28 @@ def page_dictionary_builder(page):
     for counter in range(1,21):
         create_work_dictionary(counter, page)
 
-
+# Advance to the next page
 def click_next_page():
     driver.find_element(By.XPATH, "//*[@id='main']/ol[2]/li[14]/a").click()
     time.sleep(2)
 
 full_dictionary = []
 
+# Saves data as a csv file
 def save_dictionary(file_name):
     col_name = full_dictionary[0].keys()
-    with open(file_name, 'w') as ao3_top_100_hits:
-        wr = csv.DictWriter(ao3_top_100_hits, fieldnames=col_name)
+    with open(file_name, 'w') as ao3_top_100_kudos:
+        wr = csv.DictWriter(ao3_top_100_kudos, fieldnames=col_name)
         wr.writeheader()
         for ele in full_dictionary:
             wr.writerow(ele)
 
 
+# Brings all the code together and scrapes the data for given pages.
 def scrape_pages(start, end):
     stop = end + 1
     website = ('https://archiveofourown.org/works/search?commit=Search&page=' + str(start) + '&work_search%5Bbookmarks_count%5D=&work_search%5Bcharacter_names%5D=&work_search%5Bcomments_count%5D=&work_search%5Bcomplete%5D=&work_search%5Bcreators%5D=&work_search%5Bcrossover%5D=&work_search%5Bfandom_names%5D=&work_search%5Bfreeform_names%5D=&work_search%5Bhits%5D=&work_search%5Bkudos_count%5D=&work_search%5Blanguage_id%5D=&work_search%5Bquery%5D=&work_search%5Brating_ids%5D=&work_search%5Brelationship_names%5D=&work_search%5Brevised_at%5D=&work_search%5Bsingle_chapter%5D=0&work_search%5Bsort_column%5D=kudos_count&work_search%5Bsort_direction%5D=desc&work_search%5Btitle%5D=&work_search%5Bword_count%5D=')
-    file = ("ao3_by_kudos_pg" + str(start) + "_to_" + str(end))
+    file = ("ao3_by_kudos_pg" + str(start) + "_to_" + str(end) + ".csv")
     print('Starting Driver')
     initialize_browser(website)
     print('Got in to page ' + str(start) + "!")
@@ -211,17 +213,13 @@ def scrape_pages(start, end):
     print('Dictionary Saved')
     driver.quit()
 
-scrape_pages(1, 3)
+
+# Execute
+scrape_pages(1, 5)
 
 
-
-
-
-
-
-   
-# output the dataframe
-df = pd.read_csv(".csv") 
+# Output the dataframe
+df = pd.read_csv("ao3_by_kudos_pg1_to_5.csv") 
 print(df.head())
 print(df.tail())
 
