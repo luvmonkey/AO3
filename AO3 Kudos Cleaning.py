@@ -132,5 +132,20 @@ slash_categories_bool = boolean_df('slash_categories', unique_slash_categories)
 relationships_bool = boolean_df('relationships', unique_relationships)
 characters_bool = boolean_df('characters', unique_characters)
 
+# Creating a boolean column based on status
+status_map = {'Complete Work': True, 'Work in Progress': False}
+top_100_kudos['completed'] = top_100_kudos['status'].map(status_map)
 
 
+# Separating out the chapters column into two new columns
+top_100_kudos['chapters_written'] = top_100_kudos['chapters'].apply(lambda x: x.split('/')[0])
+top_100_kudos['chapters_total'] = top_100_kudos['chapters'].apply(lambda x: x.split('/')[1])
+# 
+top_100_kudos['chapters_total'] = top_100_kudos.chapters_total.replace('?', np.NaN)
+
+# Changing the datatype of the chapters columns so aggregate functions can be used. (Cannot use int64 due to NaN)
+top_100_kudos = top_100_kudos.astype({
+    'chapters_written': 'int64', 
+    'chapters_total': 'float64'})
+
+print(top_100_kudos.dtypes)
