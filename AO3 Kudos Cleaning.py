@@ -149,10 +149,10 @@ top_100_kudos = top_100_kudos.astype({
     'chapters_total': 'float64'})
 
 # Saving clean versions of the data
-top_100_kudos.to_csv('top_100_kudos_clean.csv')
-fandoms_bool.to_csv('top_100_kudos_fandoms_bool.csv')
-freeforms_bool.to_csv('top_100_kudos_freeforms_bool.csv')
-warnings_bool.to_csv('top_100_kudos_warnings_bool.csv')
-slash_categories_bool.to_csv('top_100_kudos_slash_categories_bool.csv')
-relationships_bool.to_csv('top_100_kudos_relationships_bool.csv')
-characters_bool.to_csv('top_100_kudos_characters_bool.csv')
+# top_100_kudos.to_csv('top_100_kudos_clean.csv')
+# fandoms_bool.to_csv('top_100_kudos_fandoms_bool.csv')
+# freeforms_bool.to_csv('top_100_kudos_freeforms_bool.csv')
+# warnings_bool.to_csv('top_100_kudos_warnings_bool.csv')
+# slash_categories_bool.to_csv('top_100_kudos_slash_categories_bool.csv')
+# relationships_bool.to_csv('top_100_kudos_relationships_bool.csv')
+# characters_bool.to_csv('top_100_kudos_characters_bool.csv')
