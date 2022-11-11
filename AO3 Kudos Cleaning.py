@@ -136,11 +136,10 @@ characters_bool = boolean_df('characters', unique_characters)
 status_map = {'Complete Work': True, 'Work in Progress': False}
 top_100_kudos['completed'] = top_100_kudos['status'].map(status_map)
 
-
 # Separating out the chapters column into two new columns
 top_100_kudos['chapters_written'] = top_100_kudos['chapters'].apply(lambda x: x.split('/')[0])
 top_100_kudos['chapters_total'] = top_100_kudos['chapters'].apply(lambda x: x.split('/')[1])
-# 
+# Replacing the ? unknown values with null values
 top_100_kudos['chapters_total'] = top_100_kudos.chapters_total.replace('?', np.NaN)
 
 # Changing the datatype of the chapters columns so aggregate functions can be used. (Cannot use int64 due to NaN)
