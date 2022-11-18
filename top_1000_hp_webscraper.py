@@ -59,7 +59,11 @@ def create_work_dictionary(counter, page):
     title_of_work = driver.find_element(By.XPATH, ("//ol/li[" + str(counter) + "]/div/h4/a[1]")).text
     work_dictionary["title"] = title_of_work
 
-    username = driver.find_element(By.XPATH, ("//ol/li[" + str(counter) + "]/div/h4/a[2]")).text
+    username_present = check_exists_by_xpath("//ol/li[" + str(counter) + "]/div/h4/a[2]")
+    if (username_present == True):
+        username = driver.find_element(By.XPATH, ("//ol/li[" + str(counter) + "]/div/h4/a[2]")).text
+    else:
+        username = 'Anonymous'
     work_dictionary["username"] = username
 
     fandoms = []
@@ -215,7 +219,7 @@ def scrape_pages(start, end):
 
 
 # Execute
-scrape_pages(22, 23)
+scrape_pages(21, 25)
 
 
 
