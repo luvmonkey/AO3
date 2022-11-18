@@ -218,8 +218,9 @@ def scrape_pages(start, end):
     driver.quit()
 
 
-# Execute
-scrape_pages(21, 25)
+# Execute once
+#scrape_pages(pg, pg)
+
 
 
 
