@@ -8,23 +8,23 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 
 # required for headless
-from selenium.webdriver.safari.options import Options
+from selenium.webdriver.chrome.options import Options
 import csv
 import pandas as pd
 
 # New paradigm for path
-from selenium.webdriver.safari.service import Service
+from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import NoSuchElementException
 
-#Sets my safari driver
-safari_service = Service('/usr/bin/safaridriver')
+#Sets my chrome driver
+driver_path = 'usr/env/lib/python3.9/site-packages/selenium/webdriver/chrome/webdriver.py'
 
 # If headless if True, you don't see the window pop up
-safari_options = Options()
-safari_options.headless = True
+chrome_options = Options()
+chrome_options.headless = True
 
 #initializing driver with the above options
-driver = webdriver.Safari(service=safari_service, options=safari_options)
+driver = webdriver.Chrome(executable_path=driver_path, options=chrome_options)
 
 
 
@@ -178,6 +178,7 @@ def create_work_dictionary(counter, page):
 def page_dictionary_builder(page):
     for counter in range(1,21):
         create_work_dictionary(counter, page)
+        
 
 # Advance to the next page
 def click_next_page():
@@ -210,12 +211,24 @@ def scrape_pages(start, end):
         print('Page', page, 'Done')
         click_next_page()
     save_dictionary(file)
-    print('Dictionary Saved')
+    print('Dictionary Saved for pages', start, 'to', end)
     driver.quit()
 
 
 # Execute
-scrape_pages(1, 50)
+# scrape_pages(1, 5)
+# scrape_pages(6, 10)
+# scrape_pages(11, 15)
+# print('Another one done.')
+# scrape_pages(16, 20)
+#################scrape_pages(21, 25)
+# scrape_pages(26, 30)
+# scrape_pages(31, 35)
+# scrape_pages(36, 40)
+# scrape_pages(41, 45)
+# scrape_pages(46, 50)
+
+
 
 
 
