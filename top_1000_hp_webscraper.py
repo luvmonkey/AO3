@@ -8,23 +8,23 @@ import time
 from selenium.webdriver.support.ui import WebDriverWait
 
 # required for headless
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.safari.options import Options
 import csv
 import pandas as pd
 
 # New paradigm for path
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.safari.service import Service
 from selenium.common.exceptions import NoSuchElementException
 
-#Sets my chrome driver
-driver_path = 'usr/env/lib/python3.9/site-packages/selenium/webdriver/chrome/webdriver.py'
+#Sets my safari driver
+safari_service = Service('/usr/bin/safaridriver')
 
 # If headless if True, you don't see the window pop up
-chrome_options = Options()
-chrome_options.headless = True
+safari_options = Options()
+safari_options.headless = True
 
 #initializing driver with the above options
-driver = webdriver.Chrome(executable_path=driver_path, options=chrome_options)
+driver = webdriver.Safari(service=safari_service, options=safari_options)
 
 
 
@@ -227,6 +227,8 @@ def scrape_pages(start, end):
 # scrape_pages(36, 40)
 # scrape_pages(41, 45)
 # scrape_pages(46, 50)
+
+
 
 
 
