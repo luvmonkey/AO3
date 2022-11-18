@@ -178,7 +178,6 @@ def create_work_dictionary(counter, page):
 def page_dictionary_builder(page):
     for counter in range(1,21):
         create_work_dictionary(counter, page)
-        
 
 # Advance to the next page
 def click_next_page():
@@ -211,27 +210,12 @@ def scrape_pages(start, end):
         print('Page', page, 'Done')
         click_next_page()
     save_dictionary(file)
-    print('Dictionary Saved for pages', start, 'to', end)
+    print('Dictionary Saved')
     driver.quit()
 
 
 # Execute
-# scrape_pages(1, 5)
-# scrape_pages(6, 10)
-# scrape_pages(11, 15)
-# print('Another one done.')
-# scrape_pages(16, 20)
-#################scrape_pages(21, 25)
-# scrape_pages(26, 30)
-# scrape_pages(31, 35)
-# scrape_pages(36, 40)
-# scrape_pages(41, 45)
-# scrape_pages(46, 50)
-
-
-
-
-
+scrape_pages(22, 23)
 
 
 
