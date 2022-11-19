@@ -1,16 +1,11 @@
-from itertools import count
 from selenium import webdriver
 #For controlling browser
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 import time
-from selenium.webdriver.support.ui import WebDriverWait
 
 # required for headless
 from selenium.webdriver.safari.options import Options
 import csv
-import pandas as pd
 
 # New paradigm for path
 from selenium.webdriver.safari.service import Service
@@ -220,6 +215,7 @@ def scrape_pages(start, end):
 
 # Execute once
 #scrape_pages(pg, pg)
+scrape_pages(1, 2)
 
 
 
