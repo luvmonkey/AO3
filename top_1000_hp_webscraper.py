@@ -215,7 +215,6 @@ def scrape_pages(start, end):
 
 # Execute once
 #scrape_pages(pg, pg)
-scrape_pages(1, 2)
 
 
 
