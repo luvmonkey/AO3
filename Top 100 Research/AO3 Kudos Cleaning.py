@@ -1,7 +1,6 @@
 # importing necessary libraries
 import pandas as pd
 import numpy as np
-import os
 
 # Import the scraped data
 top_100_kudos = pd.read_csv("ao3_by_kudos_pg1_to_5.csv") 
