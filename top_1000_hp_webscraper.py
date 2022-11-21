@@ -98,10 +98,8 @@ def create_work_dictionary(counter, page):
     if (relationships_present == True):
         for elm in driver.find_elements(By.XPATH, ("//ol/li[" + str(counter) + "]/ul/li[@class='relationships']")):
             relationships.append(elm.text)
-        # print(counter, " - relationship found")
     else:
         relationships.append('No Relationship Tags')
-        # print(counter, " - no relationship found")
     work_dictionary["relationships"] = relationships
 
     characters = []
@@ -117,18 +115,18 @@ def create_work_dictionary(counter, page):
     freeforms_present = check_exists_by_xpath("//ol/li[" + str(counter) + "]/ul/li[@class='freeforms']")
     if (freeforms_present == True):
         for elm in driver.find_elements(By.XPATH, ("//ol/li[" + str(counter) + "]/ul/li[@class='freeforms']")):
-            # print("Appending: " + elm.text)
             freeforms.append(elm.text)
     else:
-        print("Nothing to append")
+        print("No Freeform tags to append")
         freeforms.append('No Freeform Tags')
     work_dictionary["freeforms"] = freeforms
 
-    summary_present = check_exists_by_xpath("//ol/li[" + str(counter) + "]/dl/dd[@class='blockquote']")
+    summary_present = check_exists_by_xpath("//ol/li[" + str(counter) + "]/blockquote/p")
     if (summary_present == True):
-        summary = driver.find_element(By.XPATH, ("//ol/li[" + str(counter) + "]/dl/dd[@class='blockquote']")).text
+        summary = driver.find_element(By.XPATH, ("//ol/li[" + str(counter) + "]/blockquote/p")).text
     else:
         summary = 'No summary'
+        print('No Summary to Append')
     work_dictionary["summary"] = summary
 
     language = driver.find_element(By.XPATH, ("//ol/li[" + str(counter) + "]/dl/dd[1]")).text
@@ -143,10 +141,8 @@ def create_work_dictionary(counter, page):
     comments_present = check_exists_by_xpath("//ol/li[" + str(counter) + "]/dl/dd[@class='comments']")
     if (comments_present == True):
         comments = driver.find_element(By.XPATH, ("//ol/li[" + str(counter) + "]/dl/dd[@class='comments']")).text
-        # print(counter, " - comments present")
     else:
         comments = '0'
-        # print(counter, " - no comments present")
     work_dictionary["comments"] = int(comments.replace(",", ""))
 
     kudos_present = check_exists_by_xpath("//ol/li[" + str(counter) + "]/dl/dd[@class='kudos']")
@@ -214,7 +210,8 @@ def scrape_pages(start, end):
 
 
 # Execute once
-#scrape_pages(pg, pg)
+# scrape_pages(pg, pg)
+
 
 
 
